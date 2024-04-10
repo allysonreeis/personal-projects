@@ -19,5 +19,18 @@ public class Product
         Name = name;
         Price = price;
         Description = description;
+        Validate();
+    }
+
+    public void Validate()
+    {
+        if (string.IsNullOrWhiteSpace(Name))
+        {
+            throw new Exception("Name is required");
+        }
+        if (Price <= 0)
+        {
+            throw new Exception("Price must be greater than zero");
+        }
     }
 }

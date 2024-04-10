@@ -25,4 +25,37 @@ public class ProductTest
         Assert.Equal(price, product.Price);
         Assert.Equal(description, product.Description);
     }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData(null)]
+    public void ShouldNotInstantiateProductWithEmptyName(string? name)
+    {
+        // Arrange
+        var price = 10.0m;
+        var description = "Product 1 description";
+
+        // Act
+        Action act = () => new Product(name, price, description);
+
+        // Assert
+        var ex = Assert.Throws<Exception>(act);
+        Assert.Equal("Name is required", ex.Message);
+    }
+
+    [Fact]
+    public void ShouldNotInstantiateWithPriceLessThanZero()
+    {
+        // Arrange
+        var name = "Product 1";
+        var price = -10.0m;
+        var description = "Product 1 description";
+
+        // Act
+        Action act = () => new Product(name, price, description);
+
+        // Assert
+        var ex = Assert.Throws<Exception>(act);
+        Assert.Equal("Price must be greater than zero", ex.Message);
+    }
 }
