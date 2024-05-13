@@ -13,6 +13,7 @@ public class Product
     public decimal Price { get; set; }
     public string Description { get; set; }
     public Category Category { get; set; }
+    public int Quantity { get; private set; }
 
     public Product(string name, decimal price, string description, Category category)
     {
@@ -34,5 +35,14 @@ public class Product
         {
             throw new Exception("Price must be greater than zero");
         }
+    }
+
+    public void AddQuantity(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            throw new Exception("Quantity must be greater than zero");
+        }
+        Quantity += quantity;
     }
 }

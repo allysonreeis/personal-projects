@@ -62,4 +62,21 @@ public class ProductTest
         var ex = Assert.Throws<Exception>(act);
         Assert.Equal("Price must be greater than zero", ex.Message);
     }
+
+    [Fact]
+    public void ShouldAddQuantity()
+    {
+        // Arrange
+        var name = "Product 1";
+        var price = 10.0m;
+        var description = "Product 1 description";
+        var category = new Category("Category 1");
+        var product = new Product(name, price, description, category);
+
+        // Act
+        product.AddQuantity(10);
+
+        // Assert
+        Assert.Equal(10, product.Quantity);
+    }
 }
