@@ -16,9 +16,10 @@ public class ProductTest
         var name = "Product 1";
         var price = 10.0m;
         var description = "Product 1 description";
+        var category = new Category("Category 1");
 
         // Act
-        var product = new Product(name, price, description);
+        var product = new Product(name, price, description, category);
 
         // Assert
         Assert.Equal(name, product.Name);
@@ -34,25 +35,28 @@ public class ProductTest
         // Arrange
         var price = 10.0m;
         var description = "Product 1 description";
+        var category = new Category("Category 1");
 
         // Act
-        Action act = () => new Product(name, price, description);
+        Action act = () => new Product(name, price, description, category);
 
         // Assert
         var ex = Assert.Throws<Exception>(act);
         Assert.Equal("Name is required", ex.Message);
     }
 
-    [Fact]
-    public void ShouldNotInstantiateWithPriceLessThanZero()
+    [Theory]
+    [InlineData(-10.0)]
+    [InlineData(0)]
+    public void ShouldNotInstantiateWithPriceLessThanZero(decimal price)
     {
         // Arrange
         var name = "Product 1";
-        var price = -10.0m;
         var description = "Product 1 description";
+        var category = new Category("Category 1");
 
         // Act
-        Action act = () => new Product(name, price, description);
+        Action act = () => new Product(name, price, description, category);
 
         // Assert
         var ex = Assert.Throws<Exception>(act);
