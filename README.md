@@ -22,4 +22,4 @@ This repository is licensed under the [MIT License](https://github.com/allysonre
 ## Contact
 For any inquiries or feedback, please contact me on [Linkedin](https://www.linkedin.com/in/allysonreeis/).
 
-Thank you for visiting! Happy coding! ??
+Thank you for visiting! Happy coding! 😁
