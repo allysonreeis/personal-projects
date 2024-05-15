@@ -13,9 +13,9 @@ public class Category
 
     public Category(string name)
     {
-        Validate();
         Id = Guid.NewGuid();
         Name = name;
+        Validate();
     }
 
     private void Validate()
