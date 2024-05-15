@@ -13,7 +13,20 @@ public class Category
 
     public Category(string name)
     {
+        Validate();
         Id = Guid.NewGuid();
         Name = name;
+    }
+
+    private void Validate()
+    {
+        if (string.IsNullOrWhiteSpace(Name))
+        {
+            throw new Exception("Name is required");
+        }
+        if (Name.Length < 3)
+        {
+            throw new Exception("Name must have at least 3 characters");
+        }
     }
 }
