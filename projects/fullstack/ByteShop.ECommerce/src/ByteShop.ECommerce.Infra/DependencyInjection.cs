@@ -10,8 +10,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<ByteShopDbContext>(options =>
         {
-            options.UseSqlServer("Server=mssql,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;");
+            options.UseSqlServer("Server=127.0.0.1,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;");
         });
+
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         return services;
     }
