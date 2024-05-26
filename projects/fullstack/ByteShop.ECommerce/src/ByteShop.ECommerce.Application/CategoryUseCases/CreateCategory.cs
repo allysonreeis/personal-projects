@@ -18,6 +18,6 @@ public class CreateCategory
 
         await _categoryRepository.Insert(category, cancellationToken);
 
-        return new CreateCategoryOutput(category.Id, category.Name);
+        return new CreateCategoryOutput(category.Id, category.Name, category.CreatedAtUTC);
     }
 }

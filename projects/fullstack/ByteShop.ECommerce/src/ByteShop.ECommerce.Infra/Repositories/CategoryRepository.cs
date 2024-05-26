@@ -16,5 +16,6 @@ public class CategoryRepository : ICategoryRepository
         ArgumentNullException.ThrowIfNull(category);
 
         await _context.Categories.AddAsync(category, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }

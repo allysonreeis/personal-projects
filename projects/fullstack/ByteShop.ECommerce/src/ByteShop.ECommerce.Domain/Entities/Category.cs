@@ -10,11 +10,13 @@ public class Category
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
+    public DateTime CreatedAtUTC { get; }
 
     public Category(string name)
     {
         Id = Guid.NewGuid();
         Name = name;
+        CreatedAtUTC = DateTime.UtcNow;
         Validate();
     }
 

@@ -8,9 +8,11 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfra(this IServiceCollection services)
     {
+
+
         services.AddDbContext<ByteShopDbContext>(options =>
         {
-            options.UseSqlServer("Server=127.0.0.1,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;");
+            options.UseSqlServer("Server=127.0.0.1,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;TrustServerCertificate=true;");
         });
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();

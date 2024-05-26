@@ -17,6 +17,10 @@ public class CategoryMap : IEntityTypeConfiguration<Category>
             .HasMaxLength(80)
             .IsRequired();
 
+        builder.Property(e => e.CreatedAtUTC)
+            .HasColumnName("Created_At_UTC")
+            .IsRequired();
+
         builder.HasIndex(e => e.Name, "Idx_Category_Name")
             .IsUnique();
     }
