@@ -6,13 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace ByteShop.ECommerce.Infra;
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfra(this IServiceCollection servies)
+    public static IServiceCollection AddInfra(this IServiceCollection services)
     {
-        servies.AddDbContext<ByteShopDbContext>(options =>
+        services.AddDbContext<ByteShopDbContext>(options =>
         {
-            options.UseSqlServer("Server=mssql,1433;Database=master;User=sa;Password=yourStrong(!)Password;");
+            options.UseSqlServer("Server=mssql,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;");
         });
-        servies.AddScoped<ICategoryRepository, CategoryRepository>();
-        return servies;
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        return services;
     }
 }
