@@ -1,5 +1,6 @@
 ﻿using ByteShop.ECommerce.Api.Categories;
-using ByteShop.ECommerce.Application.CategoryUseCases;
+using ByteShop.ECommerce.Application.CategoryUseCases.Create;
+using ByteShop.ECommerce.Application.CategoryUseCases.List;
 using ByteShop.ECommerce.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,5 +25,13 @@ public class CategoryController : ControllerBase
 
         //TODO: See how to return the created category
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetCategories(CancellationToken cancellationToken)
+    {
+        var listCategories = new ListCategories(_categoryRepository);
+        var categories = await listCategories.Handle(cancellationToken);
+        return Ok(categories);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ByteShop.ECommerce.Application.CategoryUseCases;
+namespace ByteShop.ECommerce.Application.CategoryUseCases.Create;
 public class CreateCategoryInput
 {
     public CreateCategoryInput(string name)

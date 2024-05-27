@@ -1,7 +1,7 @@
 ﻿using ByteShop.ECommerce.Domain.Entities;
 using ByteShop.ECommerce.Domain.Interfaces;
 
-namespace ByteShop.ECommerce.Application.CategoryUseCases;
+namespace ByteShop.ECommerce.Application.CategoryUseCases.Create;
 
 public class CreateCategory
 {
