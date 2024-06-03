@@ -1,0 +1,38 @@
+.table {
+    width: 90%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin: 0 auto;
+}
+
+.table th,
+.table td {
+    background-color: #454545;
+    padding: 8px;
+}
+
+.table th {
+    text-align: left;
+}
+
+.table th:first-child,
+.table td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.table th:last-child,
+.table td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.table button {
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+
+.table button:hover {
+    background-color: #27272a;
+
+}
