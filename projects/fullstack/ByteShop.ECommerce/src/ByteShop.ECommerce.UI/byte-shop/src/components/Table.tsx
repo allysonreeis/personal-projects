@@ -4,7 +4,7 @@ export function Table() {
     return (
         <table className={styles.table}>
             <thead>
-                <tr>
+                <tr className={styles.rowShadow}>
                     <th><input type="checkbox" /></th>
                     <th><button>Name</button></th>
                     <th><button>Created At</button></th>
@@ -14,7 +14,7 @@ export function Table() {
             </thead>
 
             <tbody>
-                <tr>
+                <tr className={styles.rowShadow}>
                     <td><input type="checkbox" /></td>
                     <td>Eletronics</td>
                     <td>2021-10-10</td>
@@ -26,7 +26,7 @@ export function Table() {
                 </tr>
                 {
                     [...Array(10)].map((_, i) => (
-                        <tr key={i}>
+                        <tr className={styles.rowShadow} key={i}>
                             <td><input type="checkbox" /></td>
                             <td>Eletronics</td>
                             <td>2021-10-10</td>
