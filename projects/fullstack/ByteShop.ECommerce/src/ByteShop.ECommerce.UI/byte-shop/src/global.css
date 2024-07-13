@@ -1,0 +1,21 @@
+:root {
+    --white : #fff;
+    --white-200: #f5f5f5;
+
+    --gray-300: #a2a3a3;
+    --gray-500: #333233;
+    --graty-800: #1b1c1c;
+
+    --red: #ff0d0d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    -webkit-font-smoothing: antialiased;
+}
