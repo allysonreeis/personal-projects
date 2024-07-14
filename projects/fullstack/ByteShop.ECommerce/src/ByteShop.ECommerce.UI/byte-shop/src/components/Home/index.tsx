@@ -4,7 +4,7 @@ export function Home() {
   return (
     <section className={styles.home}>
       <nav>
-        <div>
+        <div className={styles.navContainer}>
           <img
             src="/src/assets/Dribbble_logo_perple.png"
             alt="logo"

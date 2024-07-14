@@ -13,10 +13,10 @@ body {
     width: 40px;
 }
 
-navlinks {
+.navContainer {
     display: flex;
-    align-items: center;
-}
+    align-items: center; 
+  }
 
 ul {
     list-style: none;
