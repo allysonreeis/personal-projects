@@ -73,10 +73,27 @@ button {
 .button-transparent {
     background: transparent;
     color: var(--gray-500);
+    position: relative;
 }
 
-.navbuttons {
-    gap: 16px;
+.button-transparent::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    height: 4px;
+    width: 80%;
+    left: calc(10%);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    background: var(--red);
+}
+
+.button-transparent:hover::after {
+    transform: scale(1);
+}
+
+.navbuttons button {
+    margin: 0 16px;
 }
 
 
