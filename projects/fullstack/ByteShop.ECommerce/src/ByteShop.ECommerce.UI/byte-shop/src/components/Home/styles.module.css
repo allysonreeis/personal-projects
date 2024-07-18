@@ -36,7 +36,7 @@ section nav {
 
 ul {
     list-style: none;
-    gap: 32px;
+    gap: 64px;
     display: flex;
     margin-left: 25px;
 }
@@ -62,11 +62,20 @@ button {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    line-height: 0;
+}
 
+.cart {
+    width: 50px;
+}
+
+.cart:hover{
+    color: var(--red);
+    transition: 0.2s;
 }
 
 .button-solid {
-    background: #ff0d0d;
+    background: var(--red);
     color: var(--white-200);
 }
 
@@ -94,6 +103,11 @@ button {
 
 .navbuttons button {
     margin: 0 16px;
+}
+
+.navbuttons {
+    display: flex;
+    align-items: center;
 }
 
 

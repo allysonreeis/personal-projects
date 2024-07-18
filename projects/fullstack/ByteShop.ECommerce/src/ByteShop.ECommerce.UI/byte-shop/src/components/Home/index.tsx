@@ -27,7 +27,7 @@ export function Home() {
 
           <div className={styles.navbuttons}>
             <input type="text" placeholder="Busque aqui" />
-            <button>
+            <button className={styles.cart}>
               <ShoppingCart size={20} />
             </button>
             <button
