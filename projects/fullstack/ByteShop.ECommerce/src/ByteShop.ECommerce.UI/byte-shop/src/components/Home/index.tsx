@@ -30,8 +30,18 @@ export function Home() {
             <button>
               <ShoppingCart size={20} />
             </button>
-            <button className={styles['button-transparent']}>Login</button>
-            <button className={styles['button-solid']}>Sign Up</button>
+            <button
+              title="Login access your account"
+              className={styles['button-transparent']}
+            >
+              Login
+            </button>
+            <button
+              title="Create your account"
+              className={styles['button-solid']}
+            >
+              Sign Up
+            </button>
           </div>
         </nav>
       </section>
