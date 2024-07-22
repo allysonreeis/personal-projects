@@ -79,6 +79,10 @@ button {
     color: var(--white-200);
 }
 
+.button-solid:hover {
+    background: var(--red-300);
+}
+
 .button-transparent {
     background: transparent;
     color: var(--gray-500);
