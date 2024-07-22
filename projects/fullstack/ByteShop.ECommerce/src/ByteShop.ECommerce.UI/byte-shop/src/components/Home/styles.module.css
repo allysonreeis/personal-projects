@@ -136,3 +136,25 @@ li::after {
 li:hover::after {
     transform: scaleX(1);
 }
+
+.banner {
+    display: flex;
+    max-width:1920px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+.banner-text {
+    margin: 0 auto;
+    text-align: center;
+    width: 40%;
+}
+
+.banner-image {
+    width: 60%;
+}
+
+.banner-image img {
+    width: 90%;
+}
