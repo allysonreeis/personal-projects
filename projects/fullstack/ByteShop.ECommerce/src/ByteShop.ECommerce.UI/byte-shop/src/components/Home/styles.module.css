@@ -81,6 +81,8 @@ button {
 
 .button-solid:hover {
     background: var(--red-300);
+    color: var(--white);
+    transition: all 0.2s ease;
 }
 
 .button-transparent {
