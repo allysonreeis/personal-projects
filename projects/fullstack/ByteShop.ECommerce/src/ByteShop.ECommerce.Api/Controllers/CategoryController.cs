@@ -1,5 +1,6 @@
 ﻿using ByteShop.ECommerce.Api.Categories;
 using ByteShop.ECommerce.Application.CategoryUseCases.Create;
+using ByteShop.ECommerce.Application.CategoryUseCases.Delete;
 using ByteShop.ECommerce.Application.CategoryUseCases.List;
 using ByteShop.ECommerce.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -28,10 +29,18 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetCategories(CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
         var listCategories = new ListCategories(_categoryRepository);
         var categories = await listCategories.Handle(cancellationToken);
         return Ok(categories);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        var deleteCategory = new DeleteCategory(_categoryRepository);
+        await deleteCategory.Handle(id, cancellationToken);
+        return NoContent();
     }
 }

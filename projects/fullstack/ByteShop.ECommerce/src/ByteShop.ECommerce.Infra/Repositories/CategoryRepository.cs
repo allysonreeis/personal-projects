@@ -12,6 +12,16 @@ public class CategoryRepository : ICategoryRepository
         _context = context;
     }
 
+    public async Task Delete(Guid id, CancellationToken cancellationToken)
+    {
+        var category = await _context.Categories.FindAsync(id, cancellationToken);
+        if (category is not null)
+        {
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+    }
+
     public async Task<IEnumerable<Category>> GetCategories(CancellationToken cancellationToken)
     {
         return await _context.Categories.ToListAsync(cancellationToken);
