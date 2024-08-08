@@ -25,6 +25,17 @@ public class Product
         Validate();
     }
 
+    public Product(string name, decimal price, string description, Category category, int quantity)
+    {
+        Id = Guid.NewGuid();
+        Name = name;
+        Price = price;
+        Description = description;
+        Category = category;
+        Quantity = quantity;
+        Validate();
+    }
+
     public void Validate()
     {
         if (string.IsNullOrWhiteSpace(Name))
