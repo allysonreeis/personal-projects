@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ByteShop.ECommerce.UnitTest.Application.DeleteCategoryUseCase;
+namespace ByteShop.ECommerce.UnitTest.Application.CategoryTests.DeleteCategoryUseCase;
 public class DeleteCategoryTest
 {
     [Fact]

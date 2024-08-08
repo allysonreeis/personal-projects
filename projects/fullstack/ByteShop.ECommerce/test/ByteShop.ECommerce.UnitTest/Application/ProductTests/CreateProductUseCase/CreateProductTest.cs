@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ByteShop.ECommerce.UnitTest.Application.CreateProductUseCase;
+namespace ByteShop.ECommerce.UnitTest.Application.ProductTests.CreateProductUseCase;
 public class CreateProductTest
 {
     [Fact]

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ByteShop.ECommerce.UnitTest.Application.CreateCategoryUseCase;
+namespace ByteShop.ECommerce.UnitTest.Application.CategoryTests.CreateCategoryUseCase;
 public class CreateCategoryTest
 {
     [Fact]
