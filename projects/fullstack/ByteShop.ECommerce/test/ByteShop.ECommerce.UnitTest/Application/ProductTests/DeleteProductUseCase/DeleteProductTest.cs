@@ -4,11 +4,6 @@ using ByteShop.ECommerce.Application.ProductUseCases.Delete;
 using ByteShop.ECommerce.Domain.Entities;
 using ByteShop.ECommerce.Domain.Interfaces;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ByteShop.ECommerce.UnitTest.Application.ProductTests.DeleteProductUseCase;
 public class DeleteProductTest

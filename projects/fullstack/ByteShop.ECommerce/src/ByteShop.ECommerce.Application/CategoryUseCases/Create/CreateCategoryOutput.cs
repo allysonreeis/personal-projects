@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ByteShop.ECommerce.Application.CategoryUseCases.Create;
+﻿namespace ByteShop.ECommerce.Application.CategoryUseCases.Create;
 public class CreateCategoryOutput
 {
     public CreateCategoryOutput(Guid id, string name, DateTime createdAtUTC)

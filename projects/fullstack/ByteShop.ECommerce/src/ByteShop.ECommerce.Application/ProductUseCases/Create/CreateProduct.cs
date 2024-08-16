@@ -1,10 +1,5 @@
 ﻿using ByteShop.ECommerce.Domain.Entities;
 using ByteShop.ECommerce.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ByteShop.ECommerce.Application.ProductUseCases.Create;
 public class CreateProduct
