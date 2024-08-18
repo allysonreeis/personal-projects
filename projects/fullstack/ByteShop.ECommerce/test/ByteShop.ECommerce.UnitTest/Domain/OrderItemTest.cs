@@ -6,8 +6,8 @@ public class OrderItemTest
     [Fact]
     public void ShouldInstantiateOrderItem()
     {
-        var product = new Product("Product 1", 10.0m, "Product 1 description", new Category("Category 1"));
-        product.AddQuantity(10);
+        var product = new Product("Product 1", 10.0m, "Product 1 description", new Category("Category 1"), 10);
+
         var orderItem = new OrderItem(product, 10);
 
         Assert.NotEqual(Guid.Empty, orderItem.Id);

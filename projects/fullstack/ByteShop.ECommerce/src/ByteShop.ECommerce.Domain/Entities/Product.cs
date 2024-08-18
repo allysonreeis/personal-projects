@@ -9,16 +9,6 @@ public class Product
     public Category Category { get; set; }
     public int Quantity { get; private set; }
 
-    public Product(string name, decimal price, string description, Category category)
-    {
-        Id = Guid.NewGuid();
-        Name = name;
-        Price = price;
-        Description = description;
-        Category = category;
-        Validate();
-    }
-
     public Product(string name, decimal price, string description, Category category, int quantity)
     {
         Id = Guid.NewGuid();
@@ -40,6 +30,10 @@ public class Product
         {
             throw new Exception("Price must be greater than zero");
         }
+        if (Quantity <= 0)
+        {
+            throw new Exception("Quantity must be greater than zero");
+        }
     }
 
     public void AddQuantity(int quantity)
@@ -49,5 +43,18 @@ public class Product
             throw new Exception("Quantity must be greater than zero");
         }
         Quantity += quantity;
+    }
+
+    public void RemoveQuantity(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            throw new Exception("Quantity must be greater than zero");
+        }
+        if (Quantity < quantity)
+        {
+            throw new Exception("Quantity is not enough");
+        }
+        Quantity -= quantity;
     }
 }

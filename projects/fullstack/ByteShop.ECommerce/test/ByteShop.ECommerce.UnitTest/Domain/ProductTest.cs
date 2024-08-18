@@ -14,7 +14,7 @@ public class ProductTest
         var category = new Category("Category 1");
 
         // Act
-        var product = new Product(name, price, description, category);
+        var product = new Product(name, price, description, category, 1);
 
         // Assert
         Assert.Equal(name, product.Name);
@@ -33,7 +33,7 @@ public class ProductTest
         var category = new Category("Category 1");
 
         // Act
-        Action act = () => new Product(name, price, description, category);
+        Action act = () => new Product(name, price, description, category, 1);
 
         // Assert
         var ex = Assert.Throws<Exception>(act);
@@ -51,7 +51,7 @@ public class ProductTest
         var category = new Category("Category 1");
 
         // Act
-        Action act = () => new Product(name, price, description, category);
+        Action act = () => new Product(name, price, description, category, 1);
 
         // Assert
         var ex = Assert.Throws<Exception>(act);
@@ -66,12 +66,12 @@ public class ProductTest
         var price = 10.0m;
         var description = "Product 1 description";
         var category = new Category("Category 1");
-        var product = new Product(name, price, description, category);
+        var product = new Product(name, price, description, category, 10);
 
         // Act
         product.AddQuantity(10);
 
         // Assert
-        Assert.Equal(10, product.Quantity);
+        Assert.Equal(20, product.Quantity);
     }
 }

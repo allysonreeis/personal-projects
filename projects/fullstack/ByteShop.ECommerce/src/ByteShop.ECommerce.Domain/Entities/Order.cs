@@ -6,11 +6,12 @@ public class Order
     public List<OrderItem> Items { get; set; } = [];
     public decimal Total { get; set; }
 
-    public Order()
+    public Order(List<OrderItem> items)
     {
         Id = Guid.NewGuid();
         CreatedAt = DateTime.Now;
-        Items = new List<OrderItem>();
+        Items = new List<OrderItem>(items);
+        Total = items.Sum(x => x.Total);
     }
 
     public void AddItem(OrderItem item)
