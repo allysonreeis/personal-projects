@@ -1,6 +1,7 @@
 import styles from './styles.module.css'
 import { ShoppingCart } from '@phosphor-icons/react'
 import logo from '../../assets/logo.svg'
+import { ProductCard } from '../ProductCard'
 
 export function Home() {
   return (
@@ -58,6 +59,12 @@ export function Home() {
             />
           </div>
         </div>
+      </section>
+
+      <section className={styles['featured-products']}>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </section>
     </div>
   )
