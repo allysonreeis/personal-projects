@@ -1,5 +1,5 @@
 ﻿namespace ByteShop.ECommerce.Domain.Entities;
-public class Address
+public class Address : IEquatable<Address>
 {
     public string Street { get; private set; }
     public string City { get; private set; }
@@ -24,5 +24,22 @@ public class Address
         if (string.IsNullOrWhiteSpace(State)) throw new Exception("State cannot be empty");
         if (string.IsNullOrWhiteSpace(PostalCode)) throw new Exception("ZipCode cannot be empty");
         if (string.IsNullOrWhiteSpace(Country)) throw new Exception("Country cannot be empty");
+    }
+
+    public bool Equals(Address? other)
+    {
+        if (other is null) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return Street == other.Street && City == other.City && State == other.State && PostalCode == other.PostalCode && Country == other.Country;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Address address && Equals(address);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Street, City, State, PostalCode, Country);
     }
 }
