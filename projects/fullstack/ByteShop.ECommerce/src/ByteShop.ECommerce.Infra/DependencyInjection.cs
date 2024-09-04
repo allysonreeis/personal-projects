@@ -12,10 +12,12 @@ public static class DependencyInjection
 
         services.AddDbContext<ByteShopDbContext>(options =>
         {
-            options.UseSqlServer("Server=127.0.0.1,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;TrustServerCertificate=true;");
+            options.UseInMemoryDatabase("BYTESHOP");
+            //options.UseSqlServer("Server=127.0.0.1,1433;Database=BYTESHOP;User=sa;Password=yourStrong(!)Password;TrustServerCertificate=true;");
         });
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
         return services;
     }
 }

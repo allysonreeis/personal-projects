@@ -6,17 +6,18 @@ public class Product
     public string Name { get; set; }
     public decimal Price { get; set; }
     public string Description { get; set; }
+    public Guid CategoryId { get; private set; }
     public Category Category { get; set; }
     public int Quantity { get; private set; }
 
-    public Product(string name, decimal price, string description, Category category, int quantity)
+    public Product(string name, decimal price, string description, int quantity, Guid categoryId)
     {
         Id = Guid.NewGuid();
         Name = name;
         Price = price;
         Description = description;
-        Category = category;
         Quantity = quantity;
+        CategoryId = categoryId;
         Validate();
     }
 

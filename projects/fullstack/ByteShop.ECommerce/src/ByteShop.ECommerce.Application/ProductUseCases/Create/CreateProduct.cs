@@ -13,7 +13,7 @@ public class CreateProduct
 
     public async Task<CreateProductOutput> Handle(CreateProductInput createProductInput, CancellationToken cancellationToken)
     {
-        var product = new Product(createProductInput.Name, createProductInput.Price, createProductInput.Description, createProductInput.Category, createProductInput.Quantity);
+        var product = new Product(createProductInput.Name, createProductInput.Price, createProductInput.Description, createProductInput.Quantity, createProductInput.CategoryId);
         await _productRepository.Insert(product, cancellationToken);
         return new CreateProductOutput(product.Id, product.Name, product.Price, product.Category);
     }

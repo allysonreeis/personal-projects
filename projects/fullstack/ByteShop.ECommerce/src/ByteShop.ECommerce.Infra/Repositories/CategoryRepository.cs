@@ -34,4 +34,10 @@ public class CategoryRepository : ICategoryRepository
         await _context.Categories.AddAsync(category, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<Category> Get(Guid id, CancellationToken cancellationToken)
+    {
+        var category = await _context.Categories.FindAsync(id);
+        return category ?? throw new Exception("Category not found");
+    }
 }

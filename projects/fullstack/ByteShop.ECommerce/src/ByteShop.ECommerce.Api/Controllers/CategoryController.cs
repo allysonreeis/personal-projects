@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ByteShop.ECommerce.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class CategoryController : ControllerBase
 {
     private readonly ICategoryRepository _categoryRepository;
@@ -22,10 +22,10 @@ public class CategoryController : ControllerBase
     public async Task<IActionResult> Post([FromBody] CategoryRequest request, CancellationToken cancellationToken)
     {
         var createCategory = new CreateCategory(_categoryRepository);
-        await createCategory.Handle(new CreateCategoryInput(request.Name), cancellationToken);
+        var category = await createCategory.Handle(new CreateCategoryInput(request.Name), cancellationToken);
 
         //TODO: See how to return the created category
-        return Ok();
+        return CreatedAtAction(nameof(Get), new { id = category.Id }, category);
     }
 
     [HttpGet]

@@ -6,6 +6,7 @@ namespace ByteShop.ECommerce.Infra;
 public class ByteShopDbContext : DbContext
 {
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Product> Products { get; set; }
 
     public ByteShopDbContext(DbContextOptions<ByteShopDbContext> options) : base(options)
     {
@@ -14,5 +15,6 @@ public class ByteShopDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new CategoryMap());
+        modelBuilder.ApplyConfiguration(new ProductMap());
     }
 }

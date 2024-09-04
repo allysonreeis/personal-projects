@@ -1,7 +1,8 @@
 ﻿using ByteShop.ECommerce.Domain.Entities;
 
-namespace ByteShop.ECommerce.Application.ProductUseCases.Create;
-public class CreateProductInput
+namespace ByteShop.ECommerce.Api.Products;
+
+public class CreateProductRequest
 {
     public string Name { get; set; }
     public decimal Price { get; set; }
@@ -9,7 +10,7 @@ public class CreateProductInput
     public Guid CategoryId { get; set; }
     public int Quantity { get; set; }
 
-    public CreateProductInput(string name, decimal price, string description, Guid categoryId, int quantity)
+    public CreateProductRequest(string name, decimal price, string description, Guid categoryId, int quantity)
     {
         Name = name;
         Price = price;

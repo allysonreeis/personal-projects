@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteShop.ECommerce.Api", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteShop.ECommerce.Infra", "src\ByteShop.ECommerce.Infra\ByteShop.ECommerce.Infra.csproj", "{73DC8466-5E0F-439C-8C26-295EB145D16F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteShop.ECommerce.Application", "src\ByteShop.ECommerce.Application\ByteShop.ECommerce.Application.csproj", "{61C92ED7-76D7-446C-831A-67D7CA8EED76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteShop.ECommerce.Application", "src\ByteShop.ECommerce.Application\ByteShop.ECommerce.Application.csproj", "{61C92ED7-76D7-446C-831A-67D7CA8EED76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
