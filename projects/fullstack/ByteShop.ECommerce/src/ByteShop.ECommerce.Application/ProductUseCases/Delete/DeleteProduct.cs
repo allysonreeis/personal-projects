@@ -12,7 +12,6 @@ public class DeleteProduct
 
     public async Task Handle(Guid productId, CancellationToken cancellationToken)
     {
-        var product = await _productRepository.Get(productId, cancellationToken);
-        await _productRepository.Delete(product, cancellationToken);
+        await _productRepository.Delete(productId, cancellationToken);
     }
 }

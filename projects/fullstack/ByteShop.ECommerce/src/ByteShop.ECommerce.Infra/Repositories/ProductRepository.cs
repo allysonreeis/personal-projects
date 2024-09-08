@@ -12,9 +12,16 @@ internal class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public Task Delete(Product product, CancellationToken cancellationToken)
+    public async Task Delete(Guid productId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var product = await _context.Products
+            .FindAsync(productId);
+        if (product == null)
+        {
+            throw new Exception("Product not found");
+        }
+        _context.Products.Remove(product);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<Product> Get(Guid productId, CancellationToken cancellationToken)

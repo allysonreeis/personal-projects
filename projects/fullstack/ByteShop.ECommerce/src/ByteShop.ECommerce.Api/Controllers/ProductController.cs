@@ -1,6 +1,7 @@
 ﻿using ByteShop.ECommerce.Api.Products;
 using ByteShop.ECommerce.Application.CategoryUseCases.Get;
 using ByteShop.ECommerce.Application.ProductUseCases.Create;
+using ByteShop.ECommerce.Application.ProductUseCases.Delete;
 using ByteShop.ECommerce.Application.ProductUseCases.Get;
 using ByteShop.ECommerce.Application.ProductUseCases.List;
 using ByteShop.ECommerce.Domain.Interfaces;
@@ -55,5 +56,20 @@ public class ProductController : ControllerBase
         var listProducts = new ListProducts(_productRepository);
         var products = await listProducts.Handle(cancellationToken);
         return Ok(products);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProduct(Guid id, CancellationToken cancellationToken)
+    {
+        var getProduct = new GetProduct(_productRepository);
+        var deleteProduct = new DeleteProduct(_productRepository);
+        var product = await getProduct.Handle(id, cancellationToken);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        await deleteProduct.Handle(id, cancellationToken);
+        return NoContent();
     }
 }
