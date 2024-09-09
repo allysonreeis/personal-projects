@@ -7,4 +7,5 @@ public interface IProductRepository
     Task<Product> Get(Guid productId, CancellationToken cancellationToken);
     Task<IEnumerable<Product>> Get(CancellationToken cancellationToken);
     Task Delete(Guid productOd, CancellationToken cancellationToken);
+    Task Update(Product product, CancellationToken cancellationToken);
 }

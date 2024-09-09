@@ -60,7 +60,7 @@ public class OrderOutput
                 Total = x.Total
             }).ToList(),
             Total = order.Total,
-            CreatedAt = order.CreatedAt
+            CreatedAt = order.CreatedAtUTC
         };
     }
 }

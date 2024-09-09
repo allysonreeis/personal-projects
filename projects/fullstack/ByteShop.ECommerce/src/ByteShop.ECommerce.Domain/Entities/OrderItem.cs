@@ -2,15 +2,19 @@
 public class OrderItem
 {
     public Guid Id { get; set; }
+    public Guid ProductId { get; set; }
+    public Guid OrderId { get; set; }
     public Product Product { get; set; }
     public int Quantity { get; set; }
-    public decimal Total { get; set; }
+    public decimal UnitPrice { get; private set; }
+    public decimal Total => Quantity * UnitPrice;
 
-    public OrderItem(Product product, int quantity)
+    public OrderItem(Guid productId, Guid orderId, int quantity, decimal unitPrice)
     {
         Id = Guid.NewGuid();
-        Product = product;
+        OrderId = orderId;
+        ProductId = productId;
         Quantity = quantity;
-        Total = product.Price * quantity;
+        UnitPrice = unitPrice;
     }
 }

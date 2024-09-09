@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace ByteShop.ECommerce.Domain.Interfaces;
 public interface IOrderRepository
 {
-    Task<Order> Insert(Order order, CancellationToken cancellationToken);
+    Task Insert(Order order, CancellationToken cancellationToken);
     Task<List<OrderItem>> Get(List<OrderItem> orderItems);
 }

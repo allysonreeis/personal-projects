@@ -18,29 +18,48 @@ public class CreateOrder
         _productRepository = productRepository;
     }
 
-    public async Task<OrderOutput> Handle(OrderInput orderInput, CancellationToken cancellationToken)
+    public async Task<OrderOutput> Handle(CreateOrderInput orderInput, CancellationToken cancellationToken)
     {
-        var products = new List<Product>(orderInput.Items.Count);
+        // 1. Validate if the customer exists
+        // 2. Get all products from the order
+        // Validate if the products exists and if the quantity is available
+        Dictionary<Guid, Product> productsDict = new();
         foreach (var item in orderInput.Items)
         {
             var product = await _productRepository.Get(item.ProductId, cancellationToken);
-            products.Add(product);
+            if (product == null || product.Quantity < item.Quantity)
+            {
+                throw new Exception("Product not available or insufficient stock");
+            }
+            productsDict.Add(product.Id, product);
         }
 
-        var orderItems = orderInput.Items.Select(x => new OrderItem(products.First(p => p.Id == x.ProductId), x.Quantity)).ToList();
-
-        // Decrease the quantity of the products
-        foreach (var item in orderItems)
+        // 3. Update the stock of the products
+        foreach (var item in orderInput.Items)
         {
-            item.Product.RemoveQuantity(item.Quantity);
+            var product = productsDict[item.ProductId];
+            product.RemoveQuantity(item.Quantity);
+            await _productRepository.Update(product, cancellationToken);
         }
 
-        var order = new Order(orderItems);
-        Order orderInserted = await _orderRepository.Insert(order, cancellationToken);
-        OrderOutput orderOutput = orderInserted;
 
-        return orderOutput;
+        // 4. Create the order
+        var orderItems = new List<OrderItem>();
+        var order = new Order(orderInput.CustomerId, orderItems);
+
+        foreach (var item in orderInput.Items)
+        {
+            if (productsDict.TryGetValue(item.ProductId, out var product))
+            {
+                var orderItem = new OrderItem(product.Id, order.Id, item.Quantity, product.Price);
+                orderItems.Add(orderItem);
+            }
+        }
+
+        order.AddItem(orderItems);
+
+        await _orderRepository.Insert(order, cancellationToken);
+
+        return order;
     }
-
-
 }

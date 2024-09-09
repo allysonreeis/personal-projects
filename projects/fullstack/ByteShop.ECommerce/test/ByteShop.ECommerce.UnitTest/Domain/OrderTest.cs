@@ -9,7 +9,7 @@ public class OrderTest
         var items = new List<OrderItem>();
         var order = new Order(items);
         Assert.NotEqual(Guid.Empty, order.Id);
-        Assert.NotEqual(DateTime.MinValue, order.CreatedAt);
+        Assert.NotEqual(DateTime.MinValue, order.CreatedAtUTC);
         Assert.NotNull(order.Items);
         Assert.Empty(order.Items);
         Assert.Equal(0, order.Total);

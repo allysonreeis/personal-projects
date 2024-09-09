@@ -18,7 +18,7 @@ public class CreateOrderTest
             new OrderItemInput { ProductId = product2.Id, Quantity = 2 }
         };
 
-        var orderInput = new OrderInput
+        var orderInput = new CreateOrderInput
         {
             Items = itemsInput
         };
@@ -57,7 +57,7 @@ public class CreateOrderTest
             new OrderItemInput { ProductId = product2.Id, Quantity = 2 }
         };
 
-        var orderInput = new OrderInput
+        var orderInput = new CreateOrderInput
         {
             Items = itemsInput
         };

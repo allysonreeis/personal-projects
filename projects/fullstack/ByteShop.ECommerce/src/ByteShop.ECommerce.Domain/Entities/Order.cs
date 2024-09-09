@@ -2,21 +2,33 @@
 public class Order
 {
     public Guid Id { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public List<OrderItem> Items { get; set; } = [];
-    public decimal Total { get; set; }
+    public Guid CustomerId { get; set; }
+    public DateTime CreatedAtUTC { get; set; }
+    public List<OrderItem> Items { get; private set; } = [];
+    private decimal _total; // backing field
+    public decimal Total => Items.Sum(x => x.Total);
 
-    public Order(List<OrderItem> items)
+    private Order()
+    {
+    }
+
+    public Order(Guid customerId, List<OrderItem> items)
     {
         Id = Guid.NewGuid();
-        CreatedAt = DateTime.Now;
+        CustomerId = customerId;
+        CreatedAtUTC = DateTime.UtcNow;
         Items = new List<OrderItem>(items);
-        Total = items.Sum(x => x.Total);
     }
 
     public void AddItem(OrderItem item)
     {
         Items.Add(item);
-        Total += item.Total;
+        _total = Total;
+    }
+
+    public void AddItem(List<OrderItem> items)
+    {
+        Items.AddRange(items);
+        _total = Total;
     }
 }

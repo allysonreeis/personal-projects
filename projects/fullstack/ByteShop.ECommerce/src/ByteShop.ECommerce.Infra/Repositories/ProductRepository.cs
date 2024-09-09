@@ -50,4 +50,11 @@ internal class ProductRepository : IProductRepository
         await _context.Products.AddAsync(product, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task Update(Product product, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(product);
+        _context.Products.Update(product);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }

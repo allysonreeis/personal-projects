@@ -31,7 +31,7 @@ public class Product
         {
             throw new Exception("Price must be greater than zero");
         }
-        if (Quantity <= 0)
+        if (Quantity < 0)
         {
             throw new Exception("Quantity must be greater than zero");
         }
