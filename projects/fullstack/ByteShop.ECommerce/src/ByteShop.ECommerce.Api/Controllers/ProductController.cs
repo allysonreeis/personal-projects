@@ -22,7 +22,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
         var createProduct = new CreateProduct(_productRepository);
         var getCategory = new GetCategory(_categoryRepository);
@@ -38,7 +38,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetProduct(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
     {
         var getProduct = new GetProduct(_productRepository);
         var product = await getProduct.Handle(id, cancellationToken);
@@ -51,7 +51,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetProducts(CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
         var listProducts = new ListProducts(_productRepository);
         var products = await listProducts.Handle(cancellationToken);
@@ -59,7 +59,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteProduct(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
         var getProduct = new GetProduct(_productRepository);
         var deleteProduct = new DeleteProduct(_productRepository);
