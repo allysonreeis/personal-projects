@@ -19,7 +19,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CategoryRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create([FromBody] CategoryRequest request, CancellationToken cancellationToken)
     {
         var createCategory = new CreateCategory(_categoryRepository);
         var category = await createCategory.Handle(new CreateCategoryInput(request.Name), cancellationToken);

@@ -17,7 +17,7 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CreateOrderInput request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create(CreateOrderInput request, CancellationToken cancellationToken)
     {
         var createOrder = new CreateOrder(_orderRepository, _productRepository);
         var order = await createOrder.Handle(new CreateOrderInput(request.CustomerId, request.Items), cancellationToken);
