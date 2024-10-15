@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ByteShop.ECommerce.Application.OrderUseCases.Create;
 public class CreateOrder
@@ -60,6 +62,46 @@ public class CreateOrder
 
         await _orderRepository.Insert(order, cancellationToken);
 
-        return order;
+        var orderOutput = new OrderOutput()
+        {
+            Id = order.Id,
+            CreatedAt = order.CreatedAtUTC,
+            Total = order.Total,
+            /*Items = productsDict.Select(x => new OrderItemOutput
+            {
+                Id = Guid.NewGuid(),
+                Product = new ProductOutput
+                {
+                    Id = x.Value.Id,
+                    Name = x.Value.Name,
+                    Description = x.Value.Description,
+                    Price = x.Value.Price
+                },
+                Quantity = x.Value.Quantity,
+                Total = x.Value.Price
+            }).ToList()*/
+
+            Items = order.Items.Join(
+                productsDict,
+                item => item.ProductId,
+                product => product.Key,
+                (item, product) => new OrderItemOutput
+                {
+                    Id = item.Id,
+                    Product = new ProductOutput
+                    {
+                        Id = product.Value.Id,
+                        Name = product.Value.Name,
+                        Description = product.Value.Description,
+                        Price = product.Value.Price
+                    },
+                    Quantity = item.Quantity,
+                    Total = item.Total
+                }
+            ).ToList()
+        };
+
+        return orderOutput;
     }
+
 }

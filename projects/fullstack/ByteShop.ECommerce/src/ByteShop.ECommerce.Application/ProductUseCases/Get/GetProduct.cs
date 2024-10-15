@@ -18,6 +18,6 @@ public class GetProduct
     public async Task<GetProductOutput> Handle(Guid id, CancellationToken cancellationToken)
     {
         var product = await _productRepository.Get(id, cancellationToken);
-        return new GetProductOutput(product.Id, product.Name, product.Price, product.Category);
+        return new GetProductOutput(product.Id, product.Name, product.Price, product.Quantity, product.Category);
     }
 }

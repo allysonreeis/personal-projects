@@ -4,16 +4,18 @@ namespace ByteShop.ECommerce.Application.ProductUseCases.List;
 
 public class ListProductsOutput
 {
-    public Guid id { get; set; }
-    public string name { get; set; }
-    public decimal price { get; set; }
-    public Category category { get; set; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public int Quantity { get; set; }
+    public Category Category { get; set; }
 
-    public ListProductsOutput(Guid id, string name, decimal price, Category category)
+    public ListProductsOutput(Guid id, string name, decimal price, int quantity, Category category)
     {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.category = category;
+        Id = id;
+        Name = name;
+        Price = price;
+        Quantity = quantity;
+        Category = category;
     }
 }

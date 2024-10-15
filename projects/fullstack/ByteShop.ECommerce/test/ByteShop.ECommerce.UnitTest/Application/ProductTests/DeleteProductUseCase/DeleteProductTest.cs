@@ -16,18 +16,16 @@ public class DeleteProductTest
         var deleteProductUseCase = new DeleteProduct(repositoryMock.Object);
 
         var category = new Category("Category 1");
-        var productInput = new CreateProductInput("Product 1", 10.00m, "Description", category, 5);
+        var productInput = new CreateProductInput("Product 1", 10.00m, "Description", category.Id, 5);
 
-        var product = new Product(productInput.Name, productInput.Price, productInput.Description, productInput.Category, productInput.Quantity);
+        var product = new Product(productInput.Name, productInput.Price, productInput.Description, productInput.Quantity, productInput.CategoryId);
 
         repositoryMock
-            .Setup(r => r.Get(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(product);
+            .Setup(r => r.Delete(It.IsAny<Guid>(), It.IsAny<CancellationToken>()));
 
         await deleteProductUseCase.Handle(product.Id, CancellationToken.None);
 
-        repositoryMock.Verify(repo => repo.Get(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-        repositoryMock.Verify(repo => repo.Delete(It.IsAny<Product>(), It.IsAny<CancellationToken>()), Times.Once);
+        repositoryMock.Verify(repo => repo.Delete(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -39,15 +37,15 @@ public class DeleteProductTest
         var deleteProductUseCase = new DeleteProduct(repositoryMock.Object);
 
         repositoryMock
-            .Setup(r => r.Get(productId, It.IsAny<CancellationToken>()))
-            .ThrowsAsync(new NotFoundException($"Product '{productId}' not found."));
+            .Setup(r => r.Delete(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new Exception($"Product not found"));
 
         Func<Task> action = async () => await deleteProductUseCase.Handle(productId, CancellationToken.None);
 
-        var exception = await Assert.ThrowsAsync<NotFoundException>(action);
+        var exception = await Assert.ThrowsAsync<Exception>(action);
 
-        Assert.Equal($"Product '{productId}' not found.", exception.Message);
-        repositoryMock.Verify(repo => repo.Get(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
-        repositoryMock.Verify(repo => repo.Delete(It.IsAny<Product>(), It.IsAny<CancellationToken>()), Times.Never);
+        Assert.Equal($"Product not found", exception.Message);
+
+        repositoryMock.Verify(repo => repo.Delete(It.IsAny<Guid>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 }

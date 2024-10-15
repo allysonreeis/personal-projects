@@ -18,6 +18,6 @@ public class ListProducts
     public async Task<IEnumerable<ListProductsOutput>> Handle(CancellationToken cancellationToken)
     {
         var products = await _productRepository.Get(cancellationToken);
-        return products.Select(p => new ListProductsOutput(p.Id, p.Name, p.Price, p.Category));
+        return products.Select(p => new ListProductsOutput(p.Id, p.Name, p.Price, p.Quantity, p.Category));
     }
 }

@@ -24,17 +24,17 @@ public class ProductController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
-        var createProduct = new CreateProduct(_productRepository);
-        var getCategory = new GetCategory(_categoryRepository);
-        var category = await getCategory.Handle(request.CategoryId, cancellationToken);
+        var createProduct = new CreateProduct(_productRepository, _categoryRepository);
+        //var getCategory = new GetCategory(_categoryRepository);
+        //var category = await getCategory.Handle(request.CategoryId, cancellationToken);
 
-        if (category == null) return BadRequest("Category not found");
+        //if (category == null) return BadRequest("Category not found");
 
 
         var createProductInput = new CreateProductInput(request.Name, request.Price, request.Description, request.CategoryId, request.Quantity);
         var createProductOutput = await createProduct.Handle(createProductInput, cancellationToken);
 
-        return CreatedAtAction(nameof(GetProduct), new { id = createProductOutput.Id }, createProductOutput);
+        return CreatedAtAction(nameof(Get), new { id = createProductOutput.Id }, createProductOutput);
     }
 
     [HttpGet("{id}")]

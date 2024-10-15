@@ -41,7 +41,7 @@ public class OrderOutput
     public decimal Total { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public static implicit operator OrderOutput(Order order)
+    /*public static implicit operator OrderOutput(Order order)
     {
         return new OrderOutput
         {
@@ -62,5 +62,5 @@ public class OrderOutput
             Total = order.Total,
             CreatedAt = order.CreatedAtUTC
         };
-    }
+    }*/
 }

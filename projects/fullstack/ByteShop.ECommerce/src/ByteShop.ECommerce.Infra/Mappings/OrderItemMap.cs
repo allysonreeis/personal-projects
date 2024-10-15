@@ -13,6 +13,7 @@ public class OrderItemMap : IEntityTypeConfiguration<OrderItem>
         builder.HasOne(e => e.Product)
             .WithMany()
             .HasForeignKey(e => e.ProductId);
+
         builder.HasOne<Order>()
             .WithMany()
             .HasForeignKey(e => e.OrderId);

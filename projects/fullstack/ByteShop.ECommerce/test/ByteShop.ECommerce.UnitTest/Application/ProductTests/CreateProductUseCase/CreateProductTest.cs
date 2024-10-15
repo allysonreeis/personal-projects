@@ -10,10 +10,15 @@ public class CreateProductTest
     public async void ShouldCreateProduct()
     {
         var repositoryMock = new Mock<IProductRepository>();
+        var categoryRepositoryMock = new Mock<ICategoryRepository>();
+
         var category = new Category("Category 1");
-        var createProduct = new CreateProduct(repositoryMock.Object);
-        var createProductInput = new CreateProductInput("Product 1", 10.00m, "Description", category, 5);
+        var createProduct = new CreateProduct(repositoryMock.Object, categoryRepositoryMock.Object);
+        var createProductInput = new CreateProductInput("Product 1", 10.00m, "Description", category.Id, 5);
+
+
         var createProductOutput = await createProduct.Handle(createProductInput, CancellationToken.None);
+
 
         repositoryMock.Verify(repository => repository.Insert(It.IsAny<Product>(), It.IsAny<CancellationToken>()), Times.Once);
 
@@ -21,6 +26,6 @@ public class CreateProductTest
         Assert.NotEqual(Guid.Empty, createProductOutput.Id);
         Assert.Equal(createProductInput.Name, createProductOutput.Name);
         Assert.Equal(createProductInput.Price, createProductOutput.Price);
-        Assert.Equal(createProductInput.Category.Id, createProductOutput.Category.Id);
+        Assert.Equal(createProductInput.Quantity, createProductOutput.Quantity);
     }
 }
