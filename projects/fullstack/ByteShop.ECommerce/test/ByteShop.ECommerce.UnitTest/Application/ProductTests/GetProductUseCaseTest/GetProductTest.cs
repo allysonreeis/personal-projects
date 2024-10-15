@@ -61,7 +61,7 @@ public class GetProductTest
         Assert.NotNull(listProductsOutput);
         Assert.NotEmpty(listProductsOutput);
         Assert.Equal(2, listProductsOutput.Count());
-        Assert.Equal(5, listProductsOutput.ToArray()[0].Quantity);
-        Assert.Equal(10, listProductsOutput.ToArray()[1].Quantity);
+        Assert.Equal(5, listProductsOutput.ElementAt(0).Quantity);
+        Assert.Equal(10, listProductsOutput.ElementAt(1).Quantity);
     }
 }
