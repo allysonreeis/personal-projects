@@ -12,7 +12,7 @@ public class GlobalExceptionFilter : IExceptionFilter
         {
             context.Result = new ObjectResult(new { domainValidationException.Errors })
             {
-                StatusCode = 400,
+                StatusCode = StatusCodes.Status400BadRequest,
             };
             context.ExceptionHandled = true;
         }
@@ -20,7 +20,7 @@ public class GlobalExceptionFilter : IExceptionFilter
         {
             context.Result = new ObjectResult(new { errors = context.Exception.Message })
             {
-                StatusCode = 500,
+                StatusCode = StatusCodes.Status500InternalServerError,
             };
         }
     }
