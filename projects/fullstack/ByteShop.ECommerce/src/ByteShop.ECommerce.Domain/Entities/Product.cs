@@ -1,4 +1,6 @@
-﻿namespace ByteShop.ECommerce.Domain.Entities;
+﻿using ByteShop.ECommerce.Domain.Exceptions;
+
+namespace ByteShop.ECommerce.Domain.Entities;
 
 public class Product
 {
@@ -23,17 +25,23 @@ public class Product
 
     public void Validate()
     {
+        List<string> errors = new List<string>();
         if (string.IsNullOrWhiteSpace(Name))
         {
-            throw new Exception("Name is required");
+            errors.Add("Name is required");
         }
         if (Price <= 0)
         {
-            throw new Exception("Price must be greater than zero");
+            errors.Add("Price must be greater than zero");
         }
         if (Quantity < 0)
         {
-            throw new Exception("Quantity must be greater than zero");
+            errors.Add("Quantity must be greater than zero");
+        }
+
+        if (errors.Any())
+        {
+            throw new DomainValidationException(errors);
         }
     }
 

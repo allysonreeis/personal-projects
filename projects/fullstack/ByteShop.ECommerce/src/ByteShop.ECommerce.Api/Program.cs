@@ -1,4 +1,5 @@
 using ByteShop.ECommerce.Api.Configurations;
+using ByteShop.ECommerce.Api.Filters;
 using ByteShop.ECommerce.Infra;
 using Microsoft.OpenApi.Models;
 
@@ -7,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddInfra();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+    options.Filters.Add(typeof(GlobalExceptionFilter))
+);
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
