@@ -22,6 +22,8 @@ public class GlobalExceptionFilter : IExceptionFilter
             {
                 StatusCode = StatusCodes.Status500InternalServerError,
             };
+            context.ExceptionHandled = true;
+
         }
     }
 }
