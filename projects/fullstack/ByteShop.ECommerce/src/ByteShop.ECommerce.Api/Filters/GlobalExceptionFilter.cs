@@ -1,5 +1,4 @@
-﻿using ByteShop.ECommerce.Api.Shared;
-using ByteShop.ECommerce.Domain.Exceptions;
+﻿using ByteShop.ECommerce.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
