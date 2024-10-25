@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteShop.ECommerce.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,16 +28,20 @@ public class Customer
 
     private void Validate()
     {
+        var errors = new List<string>();
         if (string.IsNullOrWhiteSpace(Name))
-            throw new Exception("Name is required");
+            errors.Add("Name is required");
 
         if (string.IsNullOrWhiteSpace(Email))
-            throw new Exception("Email is required");
+            errors.Add("Email is required");
 
         if (!EmailRegex.IsMatch(Email))
-            throw new Exception("Email is invalid");
+            errors.Add("Email is invalid");
 
         if (Address is null)
-            throw new Exception($"{nameof(Address)} should not be null");
+            errors.Add($"{nameof(Address)} should not be null");
+
+        if (errors.Any())
+            throw new DomainValidationException(errors);
     }
 }

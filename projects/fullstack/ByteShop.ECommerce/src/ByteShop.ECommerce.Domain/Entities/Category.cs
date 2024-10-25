@@ -1,4 +1,6 @@
-﻿namespace ByteShop.ECommerce.Domain.Entities;
+﻿using ByteShop.ECommerce.Domain.Exceptions;
+
+namespace ByteShop.ECommerce.Domain.Entities;
 
 public class Category
 {
@@ -16,13 +18,16 @@ public class Category
 
     private void Validate()
     {
+        var errors = new List<string>();
         if (string.IsNullOrWhiteSpace(Name))
-        {
-            throw new Exception("Name is required");
-        }
+            errors.Add("Name is required");
+
         if (Name.Length < 3)
+            errors.Add("Name must have at least 3 characters");
+
+        if (errors.Any())
         {
-            throw new Exception("Name must have at least 3 characters");
+            throw new DomainValidationException(errors);
         }
     }
 }

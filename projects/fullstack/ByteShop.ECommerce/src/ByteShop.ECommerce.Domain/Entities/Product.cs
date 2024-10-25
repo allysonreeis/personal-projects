@@ -49,7 +49,7 @@ public class Product
     {
         if (quantity <= 0)
         {
-            throw new Exception("Quantity must be greater than zero");
+            throw new DomainValidationException("Quantity must be greater than zero");
         }
         Quantity += quantity;
     }
@@ -58,11 +58,11 @@ public class Product
     {
         if (quantity <= 0)
         {
-            throw new Exception("Quantity must be greater than zero");
+            throw new DomainValidationException("Quantity must be greater than zero");
         }
         if (Quantity < quantity)
         {
-            throw new Exception("Quantity is not enough");
+            throw new DomainValidationException("Quantity is not enough");
         }
         Quantity -= quantity;
     }
